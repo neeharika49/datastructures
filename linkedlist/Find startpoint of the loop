@@ -1,0 +1,26 @@
+
+
+
+Q.Write a function findFirstLoopNode() that checks whether a given Linked List contains a loop.
+If the loop is present then it returns point to the first node of the loop. Else it returns NULL.
+CODE:
+#include<bits/stdc++.h>
+    Node* detectLoop(Node*head)
+    {
+        Node*p=head;
+        Node*start=NULL;
+        unordered_map<Node*,int>m;
+        while(p!=NULL)
+        {
+            if(m[p]==1)
+             {
+                 start=p;
+                 break;
+             }
+             else
+             m[p]=1;
+             p=p->next;
+        }
+        return start;
+    }
+};
