@@ -48,7 +48,7 @@ void removeLoop(Node* head)
     
     
     
- ###CODE: using pointers(Floyids cycle detection algorithm)
+###CODE: using pointers(Floyids cycle detection algorithm)
      void removeLoop(Node* head)
     {
       Node*slow=head;
