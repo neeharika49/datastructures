@@ -17,6 +17,7 @@ First negative integer for each window of size k
 {3, -6} = -6
 {-6, 10} = -6
  
+ 
 Example 2:
 Input : 
 N = 8
