@@ -60,3 +60,35 @@ Both string contains lowercase english letters.
 	    }
 	    return count;
 	}
+	
+	###CODE:OPTIMIZED
+	
+	int search(string pat, string txt) {
+	    // code here
+	    map<char,int>mp1,mp2;
+	    for(auto x:pat)
+	    mp1[x]++;
+	    int count=0,i=0,j=0,k=pat.length(),n=txt.size();
+	    while(j<n)
+	    {
+	        auto x=mp1.find(txt[j]);
+	       if(x!=mp1.end())
+	             mp2[txt[j]]++;
+	             if(j-i+1<k)
+	             {
+	                 j++;
+	             }
+	            else if(j-i+1==k)
+	             {
+	                 if(mp1==mp2)
+	                 count++;
+	                 auto x=mp2.find(txt[i]);
+	                 if(x!=mp2.end())
+	                 mp2[txt[i]]--;
+	                 i++;
+	                 j++;
+	             }
+	    }
+	    return count;
+	    
+	}
