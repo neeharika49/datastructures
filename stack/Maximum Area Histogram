@@ -1,0 +1,91 @@
+Given an array of integers heights representing the histogram's bar height where the width of each bar is 1, return the area of the largest rectangle in the histogram.
+
+ 
+
+Example 1:
+
+
+Input: heights = [2,1,5,6,2,3]
+Output: 10
+Explanation: The above is a histogram where width of each bar is 1.
+The largest rectangle is shown in the red area, which has an area = 10 units.
+Example 2:
+
+
+Input: heights = [2,4]
+Output: 4
+ 
+
+Constraints:
+
+1 <= heights.length <= 105
+0 <= heights[i] <= 104
+
+
+
+
+#CODE:
+int largestRectangleArea(vector<int>& heights) {
+        stack<pair<int,int>>s1,s2;
+        vector<int>left,right;
+    int n=heights.size();
+    for(int i=0;i<n;i++)
+    {
+        if(s1.size()==0)
+        {
+            left.push_back(-1);
+        }
+        else if(s1.size()>0 && heights[i]>s1.top().first)
+    
+        {
+            left.push_back(s1.top().second);
+        }
+        else if(s1.size()>0 && heights[i]<=s1.top().first)
+        {
+            while(!s1.empty() && heights[i]<=s1.top().first)
+            {
+                s1.pop();
+            }
+            if(s1.size()==0)
+            {
+             left.push_back(-1);   
+             }
+            else
+                left.push_back(s1.top().second);
+        }
+        s1.push({heights[i],i});
+    }
+    for(int i=n-1;i>=0;i--)
+    {
+        if(s2.size()==0)
+        {
+            right.push_back(n);
+        }
+        else if(s2.size()>0 && heights[i]>s2.top().first)
+    
+        {
+         right.push_back(s2.top().second);
+        }
+        else if(s2.size()>0 && heights[i]<=s2.top().first)
+        {
+            while(!s2.empty() && heights[i]<=s2.top().first)
+            {
+                s2.pop();
+            }
+            if(s2.size()==0)
+            {
+             right.push_back(n);   
+             }
+            else
+                right.push_back(s2.top().second);
+        }
+        s2.push({heights[i],i});
+    }
+    reverse(right.begin(),right.end());
+    int ans=INT_MIN;
+     for(int i=0;i<n;i++)
+     {
+        ans = max(ans, (right[i]-left[i]-1)*heights[i]); 
+     }
+    return ans;
+}
