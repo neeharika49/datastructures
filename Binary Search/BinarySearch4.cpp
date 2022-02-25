@@ -65,3 +65,4 @@ int find(vector<int>&nums)
     int findMin(vector<int>& nums) {
         int x=find(nums);
         return nums[x];
+        
